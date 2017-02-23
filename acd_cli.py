@@ -162,7 +162,7 @@ def sync_node_list(full=False, to_file=None, from_file=None) -> 'Union[int, None
                 out.write(b'%s\n' % str(changeset))
                 continue
 
-            if changeset.reset or (full and first):
+            if (changeset.reset and not full) or (full and first):
                 cache.drop_all()
                 cache.init()
                 full = True
